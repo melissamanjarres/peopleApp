@@ -1,0 +1,25 @@
+<h2>People List</h2>
+  <label>Person name:</label> <input #personName />
+  <button (click)="add(personName.value); personName.value=''">
+    Add Person
+  </button>
+    <ul class="people">
+      <li *ngFor="let person of people"
+        [class.selected]="person === selectedPerson"
+        (click)="onSelect(person)">
+        <span class="badge">{{person.id}}</span> {{person.name}}
+        <button class="delete"
+          (click)="delete(person); $event.stopPropagation()">x</button>
+        </li>
+    </ul>
+    <div *ngIf="selectedPerson">
+  <h2>
+    {{selectedPerson.name | uppercase}} 
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
+    
+    <router-outlet></router-outlet>
+    
+
+
